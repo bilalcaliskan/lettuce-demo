@@ -1,0 +1,37 @@
+---
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8081}
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+lettuce-demo:
+  redis:
+    master: ${REDIS_MASTER:demo-cluster}
+    nodes: ${REDIS_NODES:localhost:17000,localhost:17001,localhost:17002}
+    keyPrefix: ${KEY_PREFIX:lettuce-demo_}
+    poolMinIdle: ${REDIS_POOL_MIN_IDLE:32}
+    poolMaxIdle: ${REDIS_POOL_MAX_IDLE:64}
+    poolMaxTotal: ${REDIS_POOL_MAX_TOTAL:128}
+    poolMaxWaitMillis: ${REDIS_POOL_MAX_WAIT_MILLIS:2000}
+    keyExpireMinutes: ${KEY_EXPIRE_MINUTES:60}
+    fixedDelayMillis: ${FIXED_DELAY_MILLIS:1000}
+    timeoutMillis: ${TIMEOUT_MILLIS:1000}
+
+
+info:
+  build:
+    name: @project.name@
+    description: @project.description@
+    group: @project.groupId@
+    artifact: @project.artifactId@
+    version: @project.version@
+
+logging:
+  level:
+    io.lettuce.core.protocol: ${LOG_LEVEL_IO_LETTUCE:info}
